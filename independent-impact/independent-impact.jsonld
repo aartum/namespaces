@@ -15,7 +15,8 @@
 	"infocomm": "https://w3id.org/infocomm/",
 	"data": "https://jellyfiiish.xyz/ns/",
 	"indimp": "https://independentimpact.org/ns/",
-	"hed": "https://independentimpact.org/ns/hedera/"
+	"hed": "https://independentimpact.org/ns/hedera/",
+	"time": "http://www.w3.org/2006/time#"
   },
   "@graph": [
 	{
@@ -147,6 +148,19 @@
     },	
 	
 	{
+      "@id": "indimp:hasVerifiableCredential",
+      "@type": "rdf:Property",
+      "skos:definition": "A verifiable credential document held by a user.",
+      "rdfs:label": "hasAgentLicense",
+      "schema:domainIncludes": {
+        "@id": "indimp:PlatformUser"
+      },
+      "schema:rangeIncludes": {
+        "@id": "vcdm:VerifiableCredential"
+      }
+    },	
+	
+	{
       "@id": "indimp:resourceHederaMessageId",
       "@type": "rdf:Property",
       "skos:definition": "The ID of the Hedera consensus message that recorded the moment of publication, listing or receipt (by the II platform) of the resource in question.",
@@ -240,7 +254,7 @@
 	  "sh:property": {
 		"sh:path": { "@id": "indimp:authProof" },
 		"sh:datatype": { "@id": "xsd:string" },
-		"sh:in": [ "NONE", "RSA_SIGNATURE", "VC" ],
+		"sh:in": [ "NONE", "EDDSA_SIGNATURE", "RSA_SIGNATURE", "VC" ],
 		"sh:minCount": 1,
 		"sh:maxCount": 1
 	  }
@@ -524,6 +538,324 @@
 		{ "@id": "dcterms:Resource" },
 		{ "@id": "aiao:Control" }
 	  ]
+    },
+	
+	{
+      "@id": "indimp:purpose",
+      "@type": "rdf:Property",
+      "skos:definition": "The purpose of a project or an activity.",
+      "rdfs:label": "purpose",
+      "schema:domainIncludes": [
+		{ "@id": "aiao:Activity" },
+		{ "@id": "aiao:Project" }
+	  ],
+      "schema:rangeIncludes": {
+        "@id": "aiao:Control"
+      }
+    },
+
+	{
+      "@id": "indimp:locationShapefile",
+      "@type": "rdf:Property",
+      "skos:definition": "The shapefile for a physical location of a project or an activity.",
+      "rdfs:label": "locationShapefile",
+      "schema:domainIncludes": [
+		{ "@id": "aiao:Activity" },
+		{ "@id": "aiao:Project" }
+	  ],
+      "schema:rangeIncludes": {
+        "@id": "dcterms:Resource"
+      }
+    },
+	
+	{
+      "@id": "indimp:TechnologyOrMeasure",
+	  "@type": "rdfs:Class",
+	  "skos:definition": "A measure or a type of technology that will be implemented or employed by a project or an activity to achieve its purpose.",
+      "rdfs:label": "TechnologyOrMeasure",
+      "rdfs:subClassOf": { 
+		"@id": "aiao:Instrument" 
+	  }
+    },
+
+	{
+      "@id": "indimp:additionalInfo",
+      "@type": "rdf:Property",
+      "skos:definition": "Any additional information about a thing.",
+      "rdfs:label": "additionalInfo",
+      "schema:domainIncludes": { 
+		"@id": "owl:Thing" 
+	  },
+      "schema:rangeIncludes": {
+        "@id": "schema:Text"
+      }
+    },
+
+	{
+      "@id": "indimp:currentAgeInYears",
+      "@type": "rdf:Property",
+      "skos:definition": "The age of a thing, given in years, at the time of reporting.",
+      "rdfs:label": "currentAgeInYears",
+      "schema:domainIncludes": { 
+		"@id": "owl:Thing" 
+	  },
+      "schema:rangeIncludes": {
+        "@id": "schema:Number"
+      }
+    },
+
+	{
+      "@id": "indimp:estimatedLifespanInYears",
+      "@type": "rdf:Property",
+      "skos:definition": "The estimated lifespan of a thing, given in years.",
+      "rdfs:label": "estimatedLifespanInYears",
+      "schema:domainIncludes": { 
+		"@id": "owl:Thing" 
+	  },
+      "schema:rangeIncludes": {
+        "@id": "schema:Number"
+      }
+    },
+
+	{
+      "@id": "indimp:techMeasType",
+      "@type": "rdf:Property",
+      "skos:definition": "The subtype of a technology or measure to be implemented or employed by a project or an activity.",
+      "rdfs:label": "techMeasType",
+      "schema:domainIncludes": { 
+		"@id": "indimp:TechnologyOrMeasure" 
+	  },
+      "schema:rangeIncludes": {
+        "@id": "schema:Text"
+      }
+    },
+	{
+ 	  "@id": "indimp:techMeasTypeShape",
+	  "@type": "sh:NodeShape",
+	  "sh:targetClass": { "@id": "indimp:TechnologyOrMeasure" },
+	  "sh:property": {
+		"sh:path": { "@id": "indimp:techMeasType" },
+		"sh:datatype": { "@id": "xsd:string" },
+		"sh:in": [ "FACILITY", "SYSTEM", "EQUIPMENT", "OTHER" ],
+		"sh:minCount": 1,
+		"sh:maxCount": 1
+	  }
+	},
+
+	{
+      "@id": "indimp:technologyOrMeasure",
+      "@type": "rdf:Property",
+      "skos:definition": "The technology or measures to be implemented or employed by a project or an activity.",
+      "rdfs:label": "technologyOrMeasure",
+      "schema:domainIncludes": [
+	    { "@id": "aiao:Activity" },
+		{ "@id": "aiao:Project" }
+	  ],
+      "schema:rangeIncludes": {
+        "@id": "indimp:TechnologyOrMeasure"
+      }
+    },
+
+	{
+      "@id": "indimp:projectHistory",
+      "@type": "rdf:Property",
+      "skos:definition": "The history of the project and its activities.",
+      "rdfs:label": "projectHistory",
+      "schema:domainIncludes": { 
+		"@id": "aiao:Project" 
+	  },
+      "schema:rangeIncludes": {
+        "@id": "schema:Text"
+      }
+    },
+
+	{
+      "@id": "indimp:impactIntentionality",
+      "@type": "rdf:Property",
+      "skos:definition": "Indicates whether an of a project or activity was an intentional or an unintentional impact.",
+      "rdfs:label": "intentionality",
+      "schema:domainIncludes": { 
+		"@id": "impactont:Impact" 
+	  },
+      "schema:rangeIncludes": {
+        "@id": "schema:Text"
+      },
+	  "rfds:comment": "An unintentional impact (whether beneficial or adverse) is typically referred to as 'leakage'."
+    },
+	{
+ 	  "@id": "indimp:impactIntentionalityShape",
+	  "@type": "sh:NodeShape",
+	  "sh:targetClass": { "@id": "impactont:Impact" },
+	  "sh:property": {
+		"sh:path": { "@id": "indimp:impactIntentionality" },
+		"sh:datatype": { "@id": "xsd:string" },
+		"sh:in": [ "INTENTIONAL", "UNINTENTIONAL" ],
+		"sh:minCount": 1,
+		"sh:maxCount": 1
+	  }
+	},
+
+	{
+      "@id": "indimp:beneficialOrAdverse",
+      "@type": "rdf:Property",
+      "skos:definition": "Indicates whether an impact of a project or an activity (whether intended or unintended) was an environmentally beneficial or environmentally adverse impact.",
+      "rdfs:label": "beneficialOrAdverse",
+      "schema:domainIncludes": { 
+		"@id": "impactont:Impact" 
+	  },
+      "schema:rangeIncludes": {
+        "@id": "schema:Text"
+      }
+    },
+	{
+ 	  "@id": "indimp:beneficialOrAdverseShape",
+	  "@type": "sh:NodeShape",
+	  "sh:targetClass": { "@id": "impactont:Impact" },
+	  "sh:property": {
+		"sh:path": { "@id": "indimp:beneficialOrAdverse" },
+		"sh:datatype": { "@id": "xsd:string" },
+		"sh:in": [ "BENEFICIAL", "ADVERSE" ],
+		"sh:minCount": 1,
+		"sh:maxCount": 1
+	  }
+	},
+
+	{
+      "@id": "indimp:monitored",
+      "@type": "rdf:Property",
+      "skos:definition": "Indicates whether an impact of a project or an activity will be monitored or not.",
+      "rdfs:label": "monitored",
+      "schema:domainIncludes": { 
+		"@id": "impactont:Impact" 
+	  },
+      "schema:rangeIncludes": {
+        "@id": "schema:Text"
+      }
+    },
+	{
+ 	  "@id": "indimp:monitoredShape",
+	  "@type": "sh:NodeShape",
+	  "sh:targetClass": { "@id": "impactont:Impact" },
+	  "sh:property": {
+		"sh:path": { "@id": "indimp:monitored" },
+		"sh:datatype": { "@id": "xsd:string" },
+		"sh:in": [ "YES", "NO" ],
+		"sh:minCount": 1,
+		"sh:maxCount": 1
+	  }
+	},
+
+	{
+      "@id": "indimp:notMonitoredJustification",
+      "@type": "rdf:Property",
+      "skos:definition": "Provides a justification for why an impact of a project or activity will not be monitored.",
+      "rdfs:label": "notMonitoredJustification",
+      "schema:domainIncludes": { 
+		"@id": "impactont:Impact" 
+	  },
+      "schema:rangeIncludes": {
+        "@id": "schema:Text"
+      }
+    },
+
+	{
+      "@id": "indimp:unitOfMeasure",
+      "@type": "rdf:Property",
+      "skos:definition": "A unit of measure.",
+      "rdfs:label": "unitOfMeasure",
+      "schema:domainIncludes": { 
+		"@id": "impactont:Indicator" 
+	  },
+      "schema:rangeIncludes": {
+        "@id": "schema:Text"
+      }
+    },
+
+	{
+      "@id": "indimp:monitoringPeriod",
+      "@type": "rdf:Property",
+      "skos:definition": "A monitoring period for an impact.",
+      "rdfs:label": "monitoringPeriod",
+      "schema:domainIncludes": { 
+		"@id": "impactont:Impact" 
+	  },
+      "schema:rangeIncludes": {
+        "@id": "time:Interval"
+      }
+    },
+	
+	{
+      "@id": "indimp:CreditingPeriod",
+	  "@type": "rdfs:Class",
+	  "skos:definition": "A crediting period for a monitored impact.",
+      "rdfs:label": "CreditingPeriod",
+      "rdfs:subClassOf": { 
+		"@id": "time:Interval" 
+	  }
+    },
+	{
+      "@id": "indimp:creditingPeriodIsRenewable",
+      "@type": "rdf:Property",
+      "skos:definition": "Indicates whether a crediting period is renewable or not.",
+      "rdfs:label": "creditingPeriodIsRenewable",
+      "schema:domainIncludes": { 
+		"@id": "indimp:CreditingPeriod" 
+	  },
+      "schema:rangeIncludes": {
+        "@id": "schema:Boolean"
+      }
+    },
+
+	{
+      "@id": "indimp:creditingPeriod",
+      "@type": "rdf:Property",
+      "skos:definition": "A crediting period for an impact. Must cover at least one monitoring period.",
+      "rdfs:label": "creditingPeriod",
+      "schema:domainIncludes": { 
+		"@id": "impactont:Impact" 
+	  },
+      "schema:rangeIncludes": {
+        "@id": "indimp:CreditingPeriod"
+      }
+    },
+
+	{
+      "@id": "indimp:additionalityJustification",
+      "@type": "rdf:Property",
+      "skos:definition": "A justification for why an impact is considered additional.",
+      "rdfs:label": "additionalityJustification",
+      "schema:domainIncludes": { 
+		"@id": "impactont:Impact" 
+	  },
+      "schema:rangeIncludes": {
+        "@id": "schema:Text"
+      }
+    },
+	
+	{
+      "@id": "indimp:Methodology",
+	  "@type": "rdfs:Class",
+	  "skos:definition": "'A system of methods used in a particular area of study or activity.' (Oxford Languages)",
+      "rdfs:label": "Methodology",
+      "rdfs:subClassOf": { 
+		"@id": "aiao:Control" 
+	  }
+    },
+
+	{
+      "@id": "indimp:monitoringReport",
+      "@type": "rdf:Property",
+      "skos:definition": "A monitoring report for a project or an activity.",
+      "rdfs:label": "monitoringReport",
+      "schema:domainIncludes": [
+		{ "@id": "aiao:Activity" },
+		{ "@id": "aiao:Project"}
+	  ]
+      "schema:rangeIncludes": {
+        "@id": "data:Document"
+      }
     }
   ]
 }
+
+
