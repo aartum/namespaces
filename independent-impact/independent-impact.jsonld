@@ -173,11 +173,13 @@
     {
       "@id": "indimp:hasVerifiableCredential",
       "@type": "rdf:Property",
-      "skos:definition": "A verifiable credential document held by a user.",
+      "skos:definition": "A verifiable credential document held by an entity (e.g., by a user or an activity).",
       "rdfs:label": "hasAgentLicense",
-      "schema:domainIncludes": {
-        "@id": "indimp:PlatformUser"
-      },
+      "schema:domainIncludes": [
+		{ "@id": "indimp:PlatformUser" },
+	    { "@id": "aiao:Activity" },
+		{ "@id": "aiao:Project" }
+	  ],
       "schema:rangeIncludes": {
         "@id": "vcdm:VerifiableCredential"
       }
