@@ -196,37 +196,7 @@
         "@id": "hed:HederaMessageId"
       }
     },
-    {
-      "@id": "indimp:resourceIpfsUri",
-      "@type": "rdf:Property",
-      "skos:definition": "The IPFS URI, if any, of the resource in question.",
-      "rdfs:label": "ipfsUri",
-      "schema:domainIncludes": {
-        "@id": "dcterms:Resource"
-      },
-      "schema:rangeIncludes": {
-        "@id": "schema:Text"
-      },
-      "rdfs:comment": "If no value is provided for this property, the content of the resource should be provided via the data:resourceContent property, or the location of the content should be provided via the data:resourceContentLocation property."
-    },
-    {
-      "@id": "indimp:resourceIpfsUriShape",
-      "@type": "sh:NodeShape",
-      "sh:targetClass": {
-        "@id": "dcterms:Resource"
-      },
-      "sh:property": {
-        "sh:path": {
-          "@id": "indimp:resourceIpfsUri"
-        },
-        "sh:datatype": {
-          "@id": "xsd:string"
-        },
-        "sh:pattern": "^(ipfs|ipns)://[a-zA-Z0-9]+(?:/[a-zA-Z0-9/._-]*)?$",
-        "sh:minCount": 1,
-        "sh:maxCount": 1
-      }
-    },
+
     {
       "@id": "indimp:documentSchema",
       "@type": "rdf:Property",
