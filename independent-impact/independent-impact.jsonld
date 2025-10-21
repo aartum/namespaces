@@ -907,6 +907,59 @@
       "schema:rangeIncludes": {
         "@id": "data:Document"
       }
-    }
+    },
+	
+	{
+		"@id": "indimp:Principle",
+		"@type": "rdfs:Class",
+		"rdfs:subClassOf": "aiao:Control",
+		"rdfs:label": "Principle",
+		"skos:definition": "A proposition that fundamentally informs the design and operation of the Independent Impact platform."
+	},
+	{
+		"@id": "indimp:GeneralPrinciple",
+		"@type": "rdfs:Class",
+		"rdfs:subClassOf": { "@id": "indimp:Principle" },
+		"rdfs:label": "GeneralPrinciple",
+		"skos:definition": "TODO"
+	},
+	{
+		"@id": "indimp:ImpactPrinciple",
+		"@type": "rdfs:Class",
+		"rdfs:subClassOf": { "@id": "indimp:Principle" },
+		"rdfs:label": "ImpactPrinciple",
+		"skos:definition": "A proposition to guide the planning and execution of an activity."
+	},
+	{
+		"@id": "indimp:AccountingPrinciple",
+		"@type": "rdfs:Class",
+		"rdfs:subClassOf": { "@id": "indimp:Principle" },
+		"rdfs:label": "AccountingPrinciple",
+		"skos:definition": "A proposition to guide the exercise of accounting for the impact of an activity."
+	},
+	{
+		"@id": "indimp:ReportingPrinciple",
+		"@type": "rdfs:Class",
+		"rdfs:subClassOf": { "@id": "indimp:Principle" },
+		"rdfs:label": "ReportingPrinciple",
+		"skos:definition": "A proposition to guide the provision of information."
+	},
+	
+	{
+		"@id": "indimp:InformationQuestion",
+		"@type": "rdfs:Class",
+		"skos:definition": "A question intended to guide an agent in the provision of information related to a specific aspect of some entity.",
+		"rdfs:label": "InformationQuestion",
+		"rdfs:subClassOf": "TODO"
+	},
+	{
+		// InformationQuestion object property: questionSubject of which the range is an activityAspect.
+	},
+	{
+		// InformationQuestion data property: questionTitle of which the range is text.
+	},
+	{
+		// InformationQuestion object property: 'principle' of which the range is indimp:Principle. Can assume multiple values.
+	}
   ]
 }
