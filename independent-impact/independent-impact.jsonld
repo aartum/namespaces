@@ -85,6 +85,7 @@
         "@id": "data:Document"
       }
     },
+	
     {
       "@id": "indimp:AgentLicense",
       "@type": "rdfs:Class",
@@ -92,7 +93,8 @@
       "rdfs:label": "AgentLicense",
       "rdfs:subClassOf": {
         "@id": "vcdm:VerifiableCredential"
-      }
+      },
+	  "rdfs:comment": "The AgentLicense class and its properties will be deprecated once the agent reputation system is fully operational."
     },
     {
       "@id": "indimp:licenseNumber",
@@ -104,7 +106,8 @@
       },
       "schema:rangeIncludes": {
         "@id": "schema:Text"
-      }
+      },
+	  "rdfs:comment": "The AgentLicense class and its properties will be deprecated once the agent reputation system is fully operational."
     },
     {
       "@id": "indimp:LicenseNumberShape",
@@ -122,7 +125,8 @@
         "sh:pattern": "^II-(PD|PV|MV)-[0-9]{2}X[0-9]{2}X[0-9]{11}-[0-9]{8}$",
         "sh:minCount": 1,
         "sh:maxCount": 1
-      }
+      },
+	  "rdfs:comment": "The AgentLicense class and its properties will be deprecated once the agent reputation system is fully operational."
     },
     {
       "@id": "indimp:licenseScope",
@@ -134,7 +138,8 @@
       },
       "schema:rangeIncludes": {
         "@id": "schema:Text"
-      }
+      },
+	  "rdfs:comment": "The AgentLicense class and its properties will be deprecated once the agent reputation system is fully operational."
     },
     {
       "@id": "indimp:licenseScopeShape",
@@ -156,7 +161,8 @@
         ],
         "sh:minCount": 1,
         "sh:maxCount": 1
-      }
+      },
+	  "rdfs:comment": "The AgentLicense class and its properties will be deprecated once the agent reputation system is fully operational."
     },
     {
       "@id": "indimp:hasAgentLicense",
@@ -168,8 +174,10 @@
       },
       "schema:rangeIncludes": {
         "@id": "indimp:AgentLicense"
-      }
+      },
+	  "rdfs:comment": "The AgentLicense class and its properties will be deprecated once the agent reputation system is fully operational."
     },
+	
     {
       "@id": "indimp:hasVerifiableCredential",
       "@type": "rdf:Property",
@@ -914,7 +922,7 @@
 		"@type": "rdfs:Class",
 		"rdfs:subClassOf": "aiao:Control",
 		"rdfs:label": "Principle",
-		"skos:definition": "A proposition that fundamentally informs the design and operation of the Independent Impact platform."
+		"skos:definition": "A proposition that fundamentally informs the design and operation of the Independent Impact platform, or which should ideally inform the activities and actions of agents on the platform."
 	},
 	{
 		"@id": "indimp:GeneralPrinciple",
