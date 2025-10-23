@@ -996,22 +996,92 @@
 		"skos:definition": "A proposition to guide the provision of information."
 	},
 	
+	
+	
+	
+	
+	
+	{
+		"@id": "indimp:Question",
+		"@type": "rdfs:Class",
+		"skos:definition": "A question.",
+		"rdfs:label": "Question",
+		"rdfs:subClassOf": "TODO"
+	},	
+    {
+      "@id": "indimp:questionTitle",
+      "@type": "rdf:Property",
+      "skos:definition": "The title of the question.",
+      "rdfs:label": "questionTitle",
+      "schema:domainIncludes": {
+        "@id": "indimp:Question"
+      },
+      "schema:rangeIncludes": {
+        "@id": "schema:Text"
+      }
+    },	
+    {
+      "@id": "indimp:questionText",
+      "@type": "rdf:Property",
+      "skos:definition": "The text of the question.",
+      "rdfs:label": "questionText",
+      "schema:domainIncludes": {
+        "@id": "indimp:Question"
+      },
+      "schema:rangeIncludes": {
+        "@id": "schema:Text"
+      }
+    },		
 	{
 		"@id": "indimp:InformationQuestion",
 		"@type": "rdfs:Class",
 		"skos:definition": "A question intended to guide an agent in the provision of information related to a specific aspect of some entity.",
 		"rdfs:label": "InformationQuestion",
-		"rdfs:subClassOf": "TODO"
+		"rdfs:subClassOf": "Question"
 	},
 	{
-		// InformationQuestion object property: questionSubject of which the range is some property of some class.
+		"@id": "indimp:ReviewQuestion",
+		"@type": "rdfs:Class",
+		"skos:definition": "A question intended to guide an agent in the review of (information related to) a specific aspect of some entity.",
+		"rdfs:label": "ReviewQuestion",
+		"rdfs:subClassOf": "Question"
 	},
-	{
-		// InformationQuestion data property: questionTitle of which the range is text.
-	},
-	{
-		// InformationQuestion object property: 'principle' of which the range is indimp:Principle. Can assume multiple values.
-	}
+	
+    {
+      "@id": "indimp:questionSubject",
+      "@type": "rdf:Property",
+      "skos:definition": "The subject of the question.",
+      "rdfs:label": "questionSubject",
+      "schema:domainIncludes": [
+	  {
+        "@id": "indimp:InformationQuestion"
+      },
+	  {
+        "@id": "indimp:ReviewQuestion"
+      }
+	  ],
+      "schema:rangeIncludes": {
+        "@id": "rdf:Property"
+      }
+    },		
+    {
+      "@id": "indimp:questionPrinciple",
+      "@type": "rdf:Property",
+      "skos:definition": "A principle to which a question is related.",
+      "rdfs:label": "questionPrinciple",
+      "schema:domainIncludes": [
+	  {
+        "@id": "indimp:InformationQuestion"
+      },
+	  {
+        "@id": "indimp:ReviewQuestion"
+      }
+	  ],
+      "schema:rangeIncludes": {
+        "@id": "indimp:Principle"
+      }
+    },	
+
 	
 	
 	
