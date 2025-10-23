@@ -204,6 +204,10 @@
         "@id": "hed:HederaMessageId"
       }
     },
+	
+	
+	
+	
 
     {
       "@id": "indimp:documentSchema",
@@ -284,6 +288,24 @@
         "sh:maxCount": 1
       }
     },
+    {
+      "@id": "indimp:DocumentSchema",
+      "@type": "rdfs:Class",
+      "skos:definition": "A specification for the structure and data types of a document.",
+      "rdfs:label": "DocumentSchema",
+      "rdfs:subClassOf": [
+        {
+          "@id": "dcterms:Resource"
+        },
+        {
+          "@id": "aiao:Control"
+        }
+      ]
+    },	
+	
+	
+	
+	
     {
       "@id": "indimp:Workflow",
       "@type": "rdfs:Class",
@@ -401,6 +423,20 @@
       }
     },
     {
+      "@id": "indimp:AgentActivityWorkflowRelation",
+      "@type": "rdfs:Class",
+      "skos:definition": "Relates an agent to an activity in the context of a specific workflow.",
+      "rdfs:label": "AgentActivityWorkflowRelation",
+      "rdfs:subClassOf": {
+        "@id": "aiao:AgentActivityRelation"
+      }
+    },
+	
+	
+	
+	
+	
+    {
       "@id": "indimp:PlatformUserXhederaAccountLink",
       "@type": "rdfs:Class",
       "skos:definition": "Links an Independent Impact platform user to a Hedera account.",
@@ -445,6 +481,12 @@
         "@id": "indimp:PlatformUserXhederaAccountLink"
       }
     },
+	
+	
+	
+	
+	
+	
     {
       "@id": "indimp:EntityXhederaTopicLink",
       "@type": "rdfs:Class",
@@ -490,6 +532,11 @@
         "@id": "indimp:EntityXhederaTopicLink"
       }
     },
+	
+	
+	
+	
+	
     {
       "@id": "indimp:isReviewOf",
       "@type": "rdf:Property",
@@ -502,23 +549,26 @@
         "@id": "data:Document"
       }
     },
-    {
-      "@id": "indimp:AgentActivityWorkflowRelation",
-      "@type": "rdfs:Class",
-      "skos:definition": "Relates an agent to an activity in the context of a specific workflow.",
-      "rdfs:label": "AgentActivityWorkflowRelation",
-      "rdfs:subClassOf": {
-        "@id": "aiao:AgentActivityRelation"
-      }
-    },
+
+
+
+
+
+
+
     {
       "@id": "indimp:dateCreated",
       "@type": "rdf:Property",
-      "skos:definition": "The timestamp at which a project was created on the Independent Impact platform.",
+      "skos:definition": "The timestamp at which a project or an activity was created on the Independent Impact platform.",
       "rdfs:label": "dateCreated",
-      "schema:domainIncludes": {
-        "@id": "aiao:Project"
-      },
+      "schema:domainIncludes": [
+		  {
+			"@id": "aiao:Project"
+		  },
+		  {
+			"@id": "aiao:Activity"
+		  }
+	  ],
       "schema:rangeIncludes": {
         "@id": "schema:DateTime"
       }
@@ -526,11 +576,16 @@
     {
       "@id": "indimp:createdBy",
       "@type": "rdf:Property",
-      "skos:definition": "The Independent Impact platform user who created the project.",
+      "skos:definition": "The Independent Impact platform user who created the project or activity.",
       "rdfs:label": "createdBy",
-      "schema:domainIncludes": {
-        "@id": "aiao:Project"
-      },
+      "schema:domainIncludes": [
+		  {
+			"@id": "aiao:Project"
+		  },
+		  {
+			"@id": "aiao:Activity"
+		  }
+	  ],
       "schema:rangeIncludes": {
         "@id": "indimp:PlatformUser"
       }
@@ -553,20 +608,6 @@
       }
     },
     {
-      "@id": "indimp:DocumentSchema",
-      "@type": "rdfs:Class",
-      "skos:definition": "A specification for the structure and data types of a document.",
-      "rdfs:label": "DocumentSchema",
-      "rdfs:subClassOf": [
-        {
-          "@id": "dcterms:Resource"
-        },
-        {
-          "@id": "aiao:Control"
-        }
-      ]
-    },
-    {
       "@id": "indimp:purpose",
       "@type": "rdf:Property",
       "skos:definition": "The purpose of a project or an activity.",
@@ -584,6 +625,21 @@
       }
     },
     {
+      "@id": "indimp:projectHistory",
+      "@type": "rdf:Property",
+      "skos:definition": "The history of the project and its activities.",
+      "rdfs:label": "projectHistory",
+      "schema:domainIncludes": {
+        "@id": "aiao:Project"
+      },
+      "schema:rangeIncludes": {
+        "@id": "schema:Text"
+      }
+    },	
+	
+	
+	
+    {
       "@id": "indimp:locationShapefile",
       "@type": "rdf:Property",
       "skos:definition": "The shapefile for a physical location of a project or an activity.",
@@ -600,6 +656,11 @@
         "@id": "dcterms:Resource"
       }
     },
+	
+	
+	
+	
+	
     {
       "@id": "indimp:TechnologyOrMeasure",
       "@type": "rdfs:Class",
@@ -607,42 +668,6 @@
       "rdfs:label": "TechnologyOrMeasure",
       "rdfs:subClassOf": {
         "@id": "aiao:Instrument"
-      }
-    },
-    {
-      "@id": "indimp:additionalInfo",
-      "@type": "rdf:Property",
-      "skos:definition": "Any additional information about a thing.",
-      "rdfs:label": "additionalInfo",
-      "schema:domainIncludes": {
-        "@id": "owl:Thing"
-      },
-      "schema:rangeIncludes": {
-        "@id": "schema:Text"
-      }
-    },
-    {
-      "@id": "indimp:currentAgeInYears",
-      "@type": "rdf:Property",
-      "skos:definition": "The age of a thing, given in years, at the time of reporting.",
-      "rdfs:label": "currentAgeInYears",
-      "schema:domainIncludes": {
-        "@id": "owl:Thing"
-      },
-      "schema:rangeIncludes": {
-        "@id": "schema:Number"
-      }
-    },
-    {
-      "@id": "indimp:estimatedLifespanInYears",
-      "@type": "rdf:Property",
-      "skos:definition": "The estimated lifespan of a thing, given in years.",
-      "rdfs:label": "estimatedLifespanInYears",
-      "schema:domainIncludes": {
-        "@id": "owl:Thing"
-      },
-      "schema:rangeIncludes": {
-        "@id": "schema:Number"
       }
     },
     {
@@ -698,17 +723,35 @@
       }
     },
     {
-      "@id": "indimp:projectHistory",
+      "@id": "indimp:currentAgeInYears",
       "@type": "rdf:Property",
-      "skos:definition": "The history of the project and its activities.",
-      "rdfs:label": "projectHistory",
+      "skos:definition": "The age of a thing, given in years, at the time of reporting.",
+      "rdfs:label": "currentAgeInYears",
       "schema:domainIncludes": {
-        "@id": "aiao:Project"
+        "@id": "owl:Thing"
       },
       "schema:rangeIncludes": {
-        "@id": "schema:Text"
+        "@id": "schema:Number"
       }
     },
+    {
+      "@id": "indimp:estimatedLifespanInYears",
+      "@type": "rdf:Property",
+      "skos:definition": "The estimated lifespan of a thing, given in years.",
+      "rdfs:label": "estimatedLifespanInYears",
+      "schema:domainIncludes": {
+        "@id": "owl:Thing"
+      },
+      "schema:rangeIncludes": {
+        "@id": "schema:Number"
+      }
+    },
+	
+	
+	
+	
+	
+
     {
       "@id": "indimp:impactIntentionality",
       "@type": "rdf:Property",
@@ -961,7 +1004,7 @@
 		"rdfs:subClassOf": "TODO"
 	},
 	{
-		// InformationQuestion object property: questionSubject of which the range is an activityAspect.
+		// InformationQuestion object property: questionSubject of which the range is some property of some class.
 	},
 	{
 		// InformationQuestion data property: questionTitle of which the range is text.
@@ -969,5 +1012,23 @@
 	{
 		// InformationQuestion object property: 'principle' of which the range is indimp:Principle. Can assume multiple values.
 	}
+	
+	
+	
+	
+	
+	
+	{
+      "@id": "indimp:additionalInfo",
+      "@type": "rdf:Property",
+      "skos:definition": "Any additional information about a thing.",
+      "rdfs:label": "additionalInfo",
+      "schema:domainIncludes": {
+        "@id": "owl:Thing"
+      },
+      "schema:rangeIncludes": {
+        "@id": "schema:Text"
+      }
+    },
   ]
 }
